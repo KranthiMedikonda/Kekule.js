@@ -550,11 +550,11 @@ Kekule.Render.Base2DRenderer = Class.create(Kekule.Render.CompositeRenderer,  //
 	{
 		var drawer = this.getRichTextDrawer();
 		if (richText.text) {
-      var sign = richText.text;
-      var radius = 5;
-      var coordAdjust = 4;
-      if (sign.charAt(0) !== '+' && sign.charAt(0) !== '-')
-        radius = 10;
+			var sign = richText.text;
+			var radius = 5;
+			var coordAdjust = 4;
+			if (sign.charAt(0) !== '+' && sign.charAt(0) !== '-')
+			   radius = 10;
 			options.strokeColor = '#000000';
 			options.strokeWidth = 1;
 			if (sign.includes('+'))
