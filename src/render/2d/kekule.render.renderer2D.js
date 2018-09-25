@@ -1468,6 +1468,8 @@ Kekule.Render.UnbondedElectronSetRenderer = Class.create(Kekule.Render.ChemObj2D
 	/** @private */
 	_drawSingleElectron: function(context, coord, radius, options)
 	{
+		options.strokeColor = '#ffffff';
+		options.strokeWidth = 3;
 		return this.drawCircle(context, coord, radius, options);
 	},
 	/** @private */
