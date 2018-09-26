@@ -551,17 +551,14 @@ Kekule.Render.Base2DRenderer = Class.create(Kekule.Render.CompositeRenderer,  //
 		var drawer = this.getRichTextDrawer();
 		if (richText.text) {
 			var sign = richText.text;
-			var radius = 5;
-			var coordAdjust = 4;
-			if (sign.charAt(0) !== '+' && sign.charAt(0) !== '-')
-			   radius = 10;
+			var radius = 10;
 			options.strokeColor = '#000000';
 			options.strokeWidth = 1;
 			if (sign.includes('+'))
 					options.fillColor = 'rgba(0, 175, 0, 0.5)';
 			if (sign.includes('-'))
 					options.fillColor = 'rgba(175, 0, 0, 0.5)';
-			this.drawCircle(context, {'x': coord.x, 'y': coord.y - (coordAdjust)}, radius, options);
+			this.drawCircle(context, coord, radius, options);
 		}
 		// debug
 		//console.log('draw richText', richText, options);
