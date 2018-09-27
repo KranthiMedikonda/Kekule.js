@@ -549,15 +549,19 @@ Kekule.Render.Base2DRenderer = Class.create(Kekule.Render.CompositeRenderer,  //
 	drawRichText: function(context, coord, richText, options)  // note: return {drawnObj, boundRect}
 	{
 		var drawer = this.getRichTextDrawer();
+		options.fontWeight = 'bold';
 		if (richText.text) {
 			var sign = richText.text;
+			options.strokeColor = 'transparent';
+			options.globalCompositeOperation = 'destination-over';
 			var radius = 10;
-			options.strokeColor = '#000000';
-			options.strokeWidth = 1;
+			if (sign.charAt(0) === '-' || sign.charAt(0) === '+')
+					options.fontSize = 20;
 			if (sign.includes('+'))
-					options.fillColor = 'rgba(0, 175, 0, 0.5)';
+					options.fillColor = 'rgb(172,219,162)';
 			if (sign.includes('-'))
-					options.fillColor = 'rgba(175, 0, 0, 0.5)';
+					options.fillColor = 'rgb(255,175,175)';
+			richText.text = sign.replace('-', '\u2012');
 			this.drawCircle(context, coord, radius, options);
 		}
 		// debug
@@ -1466,7 +1470,8 @@ Kekule.Render.UnbondedElectronSetRenderer = Class.create(Kekule.Render.ChemObj2D
 	_drawSingleElectron: function(context, coord, radius, options)
 	{
 		options.strokeColor = '#ffffff';
-		options.strokeWidth = 3;
+		options.strokeWidth = 4;
+		options.globalCompositeOperation = 'destination-over';
 		return this.drawCircle(context, coord, radius, options);
 	},
 	/** @private */
@@ -3296,6 +3301,8 @@ Kekule.Render.ChemCtab2DRenderer = Class.create(Kekule.Render.Ctab2DRenderer,
 		if (localOptions)
 			renderOptions = Object.extend(renderOptions, localOptions);
 		*/
+
+		renderOptions.globalCompositeOperation = 'destination-over';
 
 		var c1 = this.getTransformedCoord2D(context, node1, finalTransformOptions.allowCoordBorrow);
 		var c2 = this.getTransformedCoord2D(context, node2, finalTransformOptions.allowCoordBorrow);
